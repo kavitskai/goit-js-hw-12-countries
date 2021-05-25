@@ -9,10 +9,14 @@ refs.input.addEventListener('input', debounce(onSearch, 500));
 function onSearch(e) {
     e.preventDefault()
     let searchQuery = e.target.value;
+    if (!searchQuery.trim()) {
+        return;
+    }
     API.fetchCountries(searchQuery)
         .then(check.result)
         .catch(error => console.log(error))
         .finally(() => setTimeout(() => {
             refs.input.value = null
-        }, 5000));
-}
+        }, 5000));}
+    
+
